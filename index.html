@@ -61,6 +61,7 @@
     .sz-hero-bg {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
+        /* PREVIOUSLY ESTABLISHED HERO IMAGE */
         background-image: url('https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/696f54ff9b21f0da3c683ba1.jpeg') !important;
         background-size: cover;
         background-position: center;
@@ -318,63 +319,6 @@
     }
 
     /* =========================================
-       NEW: TRUSTWORTHINESS SECTION
-       ========================================= */
-    .sz-trust-section {
-        position: relative;
-        padding: 100px 20px;
-        background-color: var(--sz-dark);
-        background-image: url('https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/696f54ff15885ede7ae6e87a.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        text-align: center;
-        color: var(--sz-white);
-    }
-    
-    .sz-trust-overlay {
-        position: absolute; top:0; left:0; width:100%; height:100%;
-        background: rgba(15, 23, 42, 0.9); /* Dark overlay */
-    }
-
-    .sz-trust-grid {
-        position: relative; z-index: 2;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 40px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .sz-trust-item {
-        padding: 20px;
-    }
-
-    .sz-trust-number {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 5rem;
-        font-weight: 700;
-        color: var(--sz-gold);
-        line-height: 1;
-        margin-bottom: 15px;
-        display: inline-block;
-    }
-    
-    /* Add suffixes */
-    .sz-trust-item:nth-child(1) .sz-trust-number::after,
-    .sz-trust-item:nth-child(2) .sz-trust-number::after,
-    .sz-trust-item:nth-child(4) .sz-trust-number::after { content: '+'; }
-    .sz-trust-item:nth-child(3) .sz-trust-number::after { content: '%'; }
-
-    .sz-trust-text {
-        font-size: 1.1rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #cbd5e1;
-    }
-
-    /* =========================================
        5. CONTACT & MAP
        ========================================= */
     .sz-contact {
@@ -450,8 +394,6 @@
         .sz-space { height: 50vh; }
         .sz-quote { font-size: 1.5rem; }
         .sz-quote-box { width: 90%; padding: 30px; }
-        .sz-trust-number { font-size: 3.5rem; }
-        .sz-trust-grid { gap: 40px; }
     }
 
     /* Keyframes */
@@ -471,7 +413,7 @@
         <h1 class="sz-title reveal-trigger">Stefanos Zampelis</h1>
         <h2 class="sz-subtitle reveal-trigger" style="transition-delay: 0.2s;">ΚΛΙΝΙΚΟΣ & ΑΘΛΗΤΙΚΟΣ ΨΥΧΟΛΟΓΟΣ</h2>
         
-        <a href="https://www.instadoctor.gr/booking/67f51f56ddc41?o=67f51f56e0f6c&hl=en-GR&gei=KldvabOhHJiK9u8P17Km6AU&rwg_token=AFd1xnFXX8oxfcl0VOQPpMUnfyqKcY0cQQ12OTk1azUHZgT5S2EfjrS8Twf06xuDH7HdODCmjStv-BMvi__ZGriY_c3-gV6a0w%3D%3D" target="_blank" class="sz-btn-gold reveal-trigger" style="transition-delay: 0.4s;">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
+        <a href="#contact" class="sz-btn-gold reveal-trigger" style="transition-delay: 0.4s;">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
     </div>
 </div>
 
@@ -550,35 +492,6 @@
     </div>
 </div>
 
-<div class="sz-trust-section">
-    <div class="sz-trust-overlay"></div>
-    <div class="sz-container">
-        <div class="sz-trust-grid">
-            
-            <div class="sz-trust-item reveal-trigger">
-                <div class="sz-trust-number" data-target="10">0</div>
-                <div class="sz-trust-text">Διαφορετικές Υπηρεσίες</div>
-            </div>
-            
-            <div class="sz-trust-item reveal-trigger" style="transition-delay: 0.1s;">
-                <div class="sz-trust-number" data-target="10">0</div>
-                <div class="sz-trust-text">Χρόνια Εμπειρίας</div>
-            </div>
-            
-            <div class="sz-trust-item reveal-trigger" style="transition-delay: 0.2s;">
-                <div class="sz-trust-number" data-target="98">0</div>
-                <div class="sz-trust-text">Εξατομικευμένη Φροντίδα</div>
-            </div>
-            
-            <div class="sz-trust-item reveal-trigger" style="transition-delay: 0.3s;">
-                <div class="sz-trust-number" data-target="295">0</div>
-                <div class="sz-trust-text">Ευχαριστημένοι Πελάτες</div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <div class="sz-contact" id="contact">
     <div class="sz-contact-grid">
         
@@ -632,56 +545,21 @@
 </div>
 
 <script>
+    // Reveal Animation on Scroll
     document.addEventListener("DOMContentLoaded", function() {
-        
-        // 1. General Reveal Animation
-        const revealObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal-trigger').forEach(el => {
-            el.classList.add('reveal');
-            revealObserver.observe(el);
+        const targets = document.querySelectorAll('.reveal-trigger');
+        targets.forEach(el => {
+            el.classList.add('reveal'); // Add base class via JS to avoid hiding if JS fails
+            observer.observe(el);
         });
-
-        // 2. Number Counting Animation for Trust Section
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('sz-trust-section')) {
-                    const counters = entry.target.querySelectorAll('.sz-trust-number');
-                    counters.forEach(counter => {
-                        const target = +counter.getAttribute('data-target');
-                        const duration = 2500; // Animation duration in ms
-                        const frameDuration = 1000 / 60; // 60fps
-                        const totalFrames = Math.round(duration / frameDuration);
-                        const step = target / totalFrames;
-                        let current = 0;
-                        
-                        const updateCounter = () => {
-                            current += step;
-                            if (current < target) {
-                                counter.textContent = Math.floor(current);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.textContent = target; // Ensure final number is exact
-                            }
-                        };
-                        updateCounter();
-                    });
-                    // Only run once
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        const trustSection = document.querySelector('.sz-trust-section');
-        if (trustSection) {
-            counterObserver.observe(trustSection);
-        }
     });
 </script>
