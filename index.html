@@ -54,18 +54,18 @@
   #zampelis-root img { max-width: 100%; display: block; }
   
   .z-container {
-    max-width: 1440px; /* Increased to push content more to the left on larger screens */
+    max-width: 1600px; /* Increased massively to push content far left on desktop */
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 4%; /* Percent-based padding hugs the edges tighter on wide screens */
     position: relative;
     z-index: 5;
   }
 
   /* --- COMPONENTS --- */
 
-  /* LOGO - UPDATED SIZE */
+  /* LOGO - UPDATED SIZE (LARGER) */
   .z-logo-fancy {
-      height: 110px; 
+      height: 140px; /* Increased heavily */
       border-radius: 50%;
       border: 3px solid rgba(255,255,255,0.2);
       box-shadow: 0 5px 20px rgba(0,0,0,0.08);
@@ -126,10 +126,17 @@
   }
   
   .z-hero-overlay {
-    /* Adjusted to fade out completely on the right side, making the image highly visible */
-    background: linear-gradient(90deg, rgba(244,245,240,0.95) 0%, rgba(244,245,240,0.8) 40%, rgba(244,245,240,0) 80%);
+    background: linear-gradient(90deg, rgba(244,245,240,0.95) 0%, rgba(244,245,240,0.8) 35%, rgba(244,245,240,0) 70%);
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 1;
+  }
+
+  /* Hero Content Positioning */
+  .z-hero-content {
+      max-width: 700px; 
+      position: relative; 
+      z-index: 10; 
+      padding-top: 15vh; /* Responsive vertical padding */
   }
 
   /* Bio Image */
@@ -179,14 +186,22 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    .z-logo-fancy { height: 80px; } 
+    .z-container { padding: 0 24px; }
+    .z-logo-fancy { height: 100px; } /* Proportional increase for mobile */
     #zampelis-root h1 { font-size: 2.5rem; }
     #zampelis-root h2 { font-size: 2rem; }
     .z-grid { grid-template-columns: 1fr; }
     .z-bio-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     .z-footer-grid { grid-template-columns: 1fr !important; }
+    
+    /* Inverted Mobile Gradient: 100% transparent top, solid bottom */
     .z-hero-overlay {
-        background: linear-gradient(180deg, rgba(244,245,240,0.95) 0%, rgba(244,245,240,0.85) 60%, rgba(244,245,240,0.2) 100%);
+        background: linear-gradient(180deg, rgba(244,245,240,0) 0%, rgba(244,245,240,0) 35%, rgba(244,245,240,0.95) 70%, rgba(244,245,240,1) 100%);
+    }
+    
+    /* Push text down on mobile so the top image is 100% visible */
+    .z-hero-content {
+        padding-top: 45vh; 
     }
   }
   @media (min-width: 769px) {
@@ -213,8 +228,8 @@
         
         <div class="z-hero-overlay"></div>
 
-        <div class="z-container">
-            <div style="max-width: 700px; position: relative; z-index: 10; padding-top: 100px;">
+        <div class="z-container" style="width: 100%;">
+            <div class="z-hero-content">
                 <span class="z-reveal" style="display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 24px; color: var(--z-col-primary); font-weight: 600;">
                     Κλινικός & Αθλητικός Ψυχολόγος
                 </span>
@@ -328,7 +343,7 @@
         <div class="z-container">
             <div class="z-footer-grid" style="display: grid; gap: 40px; margin-bottom: 40px;">
                 <div class="z-reveal">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/696f54ffd4fb90244971d047.jpeg" alt="Logo" class="z-logo-fancy" style="height: 90px; margin-bottom: 20px;">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/696f54ffd4fb90244971d047.jpeg" alt="Logo" class="z-logo-fancy" style="height: 120px; margin-bottom: 20px;">
                     <h3 style="color: white; font-family: var(--z-font-heading); margin-bottom: 10px;">Στέφανος Ζαμπέλης</h3>
                     <p style="font-size: 0.95rem;">Κλινικός & Αθλητικός Ψυχολόγος.<br>Κορυδαλλός, Αττική</p>
                 </div>
